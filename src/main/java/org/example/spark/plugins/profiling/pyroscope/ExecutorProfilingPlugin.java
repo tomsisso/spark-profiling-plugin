@@ -13,7 +13,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class ExecutorProfilingPlugin implements ExecutorPlugin {
-    private ThreadLocal<ScopedContext> threadLocalScopedContext = new ThreadLocal<>();
+    private final ThreadLocal<ScopedContext> threadLocalScopedContext = new ThreadLocal<>();
 
     @Override
     public void init(PluginContext ctx, Map<String, String> extraConf) {

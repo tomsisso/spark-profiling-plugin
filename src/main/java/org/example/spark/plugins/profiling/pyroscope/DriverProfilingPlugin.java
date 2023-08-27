@@ -23,9 +23,6 @@ public class DriverProfilingPlugin implements DriverPlugin {
         return configsMap;
     }
 
-    @Override
-    public void shutdown() {}
-
     private static Map<String, String> buildConfigsMap(SparkContext sc) {
         Tuple2<String, String>[] conf = JavaSparkContext.fromSparkContext(sc)
                 .getConf()
