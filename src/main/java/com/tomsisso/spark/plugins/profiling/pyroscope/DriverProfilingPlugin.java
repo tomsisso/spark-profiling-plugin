@@ -1,4 +1,4 @@
-package org.example.spark.plugins.profiling.pyroscope;
+package com.tomsisso.spark.plugins.profiling.pyroscope;
 
 import io.pyroscope.javaagent.PyroscopeAgent;
 import io.pyroscope.javaagent.config.Config;

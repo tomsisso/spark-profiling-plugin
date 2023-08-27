@@ -1,4 +1,4 @@
-package org.example.spark.plugins.profiling.pyroscope;
+package com.tomsisso.spark.plugins.profiling.pyroscope;
 
 import org.apache.spark.api.plugin.DriverPlugin;
 import org.apache.spark.api.plugin.ExecutorPlugin;

@@ -1,4 +1,4 @@
-package org.example.spark.plugins.profiling.pyroscope;
+package com.tomsisso.spark.plugins.profiling.pyroscope;
 
 import com.google.common.base.Objects;
 import io.pyroscope.http.Format;
