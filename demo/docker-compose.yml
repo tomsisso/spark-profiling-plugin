@@ -4,6 +4,15 @@
 version: '2'
 
 services:
+  pyroscope:
+    image: grafana/pyroscope:latest
+  grafana:
+    image: grafana/grafana:main
+    ports:
+      - '3000:3000'
+    volumes:
+      - ./grafana/dashboards:/etc/grafana/provisioning/dashboards/
+      - ./grafana/datasources:/etc/grafana/provisioning/datasources/
   spark-master:
     image: docker.io/bitnami/spark:3.4
     environment:
@@ -15,7 +24,6 @@ services:
       - SPARK_USER=spark
     ports:
       - '8080:8080'
-      - '7077:7077'
     volumes:
       - ./jars:/opt/spark-jars
       - ./data:/opt/spark-data
@@ -35,22 +43,6 @@ services:
       - spark-master
     ports:
       - '4040:4040'
-      - '8081:8081'
     volumes:
       - ./jars:/opt/spark-jars
       - ./data:/opt/spark-data
-  pyroscope:
-    image: grafana/pyroscope:latest
-    ports:
-      - '4041:4040'
-  grafana:
-    image: grafana/grafana:main
-    ports:
-      - '3000:3000'
-    volumes:
-      - ./grafana/dashboards:/etc/grafana/provisioning/dashboards/
-      - ./grafana/datasources:/etc/grafana/provisioning/datasources/
-    depends_on:
-      - pyroscope
-#  http://localhost:3000/datasources
-#  http://pyroscope:4040/

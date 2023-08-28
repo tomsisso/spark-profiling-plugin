@@ -38,8 +38,8 @@ public class ExecutorProfilingPlugin implements ExecutorPlugin {
 
     private void setCurrentContext() {
         Map<String, String> labels = new HashMap<>();
-        labels.put("stage", String.valueOf(TaskContext.get().stageId()));
-        labels.put("partition", String.valueOf(TaskContext.get().partitionId()));
+        labels.put("stage", "stage-" + TaskContext.get().stageId());
+        labels.put("partition", "partition-" + TaskContext.get().partitionId());
 
         //This sets the contextId of the current thread for the profiler
         ScopedContext scopedContext = new ScopedContext(new LabelsSet(labels));

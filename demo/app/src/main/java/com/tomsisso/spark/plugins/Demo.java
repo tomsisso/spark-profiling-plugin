@@ -1,8 +1,5 @@
 package com.tomsisso.spark.plugins;
 
-import org.apache.spark.api.java.function.MapFunction;
-import org.apache.spark.sql.Encoders;
-import org.apache.spark.sql.Row;
 import org.apache.spark.sql.SparkSession;
 
 public class Demo {

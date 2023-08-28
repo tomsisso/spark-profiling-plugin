@@ -15,7 +15,7 @@
    /opt/bitnami/spark/bin/spark-submit \
    --deploy-mode cluster \
    --master spark://spark-master:7077 \
-   --name "my-spark-app" \
+   --name "my-demo-app" \
    --conf spark.driver.cores=1 \
    --conf spark.driver.memory=1g \
    --conf spark.executor.cores=1 \
