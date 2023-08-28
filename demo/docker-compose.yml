@@ -3,8 +3,6 @@
 
 version: '2'
 
-#  docker-compose up --scale spark-worker=2
-
 services:
   spark-master:
     image: docker.io/bitnami/spark:3.4
