@@ -14,12 +14,11 @@ public class PyroscopeConfigFactory {
     public static Config of(PluginContext pluginContext,
                             Map<String, String> extraConfMap) {
         Map<String, String> staticLabels = new HashMap<>();
-        staticLabels.put("host", pluginContext.hostname());
         staticLabels.put("executor", pluginContext.executorID());
 
-        String appName = pluginContext.conf().get("spark.app.name", pluginContext.conf().getAppId());
+        String appName = pluginContext.conf().get("spark.app.name");
         String serverAddress = extraConfMap.get("server.address");//"http://pyroscope-server:4040"
-        EventType eventType = EventType.valueOf(Objects.firstNonNull(extraConfMap.get("events"), "itimer"));
+        EventType eventType = EventType.fromId(Objects.firstNonNull(extraConfMap.get("events"), "itimer"));
         Duration profilingInterval = Duration.ofMillis(Integer.valueOf(Objects.firstNonNull(extraConfMap.get("profiling.interval.ms"), "19")));
         Duration uploadInterval = Duration.ofSeconds(Integer.valueOf(Objects.firstNonNull(extraConfMap.get("upload.interval.seconds"), "10")));
         String allocBytes = Objects.firstNonNull(extraConfMap.get("alloc.bytes"), "1000");

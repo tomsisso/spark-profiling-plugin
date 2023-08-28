@@ -16,6 +16,7 @@ public class DriverProfilingPlugin implements DriverPlugin {
     @Override
     public Map<String, String> init(SparkContext sc, PluginContext pluginContext) {
         Map<String, String> configsMap = buildConfigsMap(sc);
+        System.out.println("Parsed configs map: " + configsMap);
 
         Config config = PyroscopeConfigFactory.of(pluginContext, configsMap);
         PyroscopeAgent.start(config);

@@ -1,21 +1,23 @@
 package com.tomsisso.spark.plugins;
 
+import org.apache.spark.api.java.function.MapFunction;
+import org.apache.spark.sql.Encoders;
+import org.apache.spark.sql.Row;
 import org.apache.spark.sql.SparkSession;
 
 public class Demo {
     public static void main(String[] args) throws InterruptedException {
         System.out.println("Hello world");
-//        SparkSession sparkSession = SparkSession.builder().getOrCreate();
-        SparkSession sparkSession = SparkSession.builder().master("local[*]").getOrCreate();
-        String inputPath = Demo.class.getClassLoader().getResource("org.csv").getPath();
-//        String inputPath = "/opt/demo-data";
+        SparkSession sparkSession = SparkSession.builder().getOrCreate();
+//        SparkSession sparkSession = SparkSession.builder().master("local[*]").getOrCreate();
+//        String inputPath = Demo.class.getClassLoader().getResource("org.csv").getPath();
+        String inputPath = "/opt/spark-data/";
 
         sparkSession.read()
                 .option("header", true)
                 .csv(inputPath)
+                .repartition(20)
                 .createOrReplaceTempView("input");
-
-//        sparkSession.sql("select * from input").printSchema();
 
         sparkSession.sql("" +
                         "SELECT Country, count(1) " +
