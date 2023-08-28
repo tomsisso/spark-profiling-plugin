@@ -24,8 +24,8 @@ services:
     environment:
       - SPARK_MODE=worker
       - SPARK_MASTER_URL=spark://spark-master:7077
-      - SPARK_WORKER_MEMORY=1G
-      - SPARK_WORKER_CORES=6
+      - SPARK_WORKER_MEMORY=4G
+      - SPARK_WORKER_CORES=4
       - SPARK_RPC_AUTHENTICATION_ENABLED=no
       - SPARK_RPC_ENCRYPTION_ENABLED=no
       - SPARK_LOCAL_STORAGE_ENCRYPTION_ENABLED=no
@@ -47,5 +47,10 @@ services:
     image: grafana/grafana:main
     ports:
       - '3000:3000'
+    volumes:
+      - ./grafana/dashboards:/etc/grafana/provisioning/dashboards/
+      - ./grafana/datasources:/etc/grafana/provisioning/datasources/
+    depends_on:
+      - pyroscope
 #  http://localhost:3000/datasources
 #  http://pyroscope:4040/

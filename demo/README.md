@@ -4,40 +4,44 @@
    1. org.csv
 2. make sure ./jars contains: 
    1. spark_app-1.0-beta.jar
-   2. spark_profiling_plugin-1.0-beta.jar
-3. setup the environment (spark master, 2 workers, pyroscope & grafana): 
+   2. spark_profiling_plugin-1.0-beta-jar-with-dependencies.jar
+3. setup the environment (spark standalone cluster of master & worker, pyroscope & grafana): 
    ``` 
-   docker-compose up --scale spark-worker=2
+   docker-compose up 
    ```
-4. submit the demo spark app:
-   1. login to spark master:
+4. setup grafana:
+   1. setup pyroscope datasource:
+      ```
+      for i in grafana/data_sources/*; do \
+      curl -X "POST" "http://localhost:3000/api/datasources" \
+      -H "Content-Type: application/json" \
+      --user admin:admin \
+      --data-binary @$i
+      done
+      ```
+   2. setup pyroscope dashboard:
+      ```
+      ```
+5. submit the demo job using one of the nodes:
    ``` 
-   docker exec -it spark-master /bin/bash
-   ``` 
-   2. submit the demo app job:
-   ```
-   /opt/bitnami/spark/bin/spark-submit --deploy-mode client \
+   docker exec demo_spark-master_1 \
+   /opt/bitnami/spark/bin/spark-submit \
+   --deploy-mode cluster \
    --master spark://spark-master:7077 \
    --name "my-spark-app" \
+   --conf spark.driver.cores=1 \
+   --conf spark.driver.memory=1g \
+   --conf spark.executor.cores=1 \
+   --conf spark.executor.memory=1g \
    --class com.tomsisso.spark.plugins.Demo \
    --jars /opt/spark-jars/spark_profiling_plugin-1.0-beta-jar-with-dependencies.jar \
    --conf spark.plugins='com.tomsisso.spark.plugins.profiling.pyroscope.SparkProfilingPlugin' \
    --conf spark.plugins.profiling.pyroscope.plugin.server.address='http://pyroscope:4040' \
    --conf spark.plugins.profiling.pyroscope.plugin.upload.interval.seconds=1 \
    /opt/spark-jars/spark_app-1.0-beta.jar
-   
-   /opt/bitnami/spark/bin/spark-submit --deploy-mode client \
-   --master spark://spark-master:7077 \
-   --name "my-spark-app" \
-   --class com.tomsisso.spark.plugins.Demo \
-   --jars /opt/spark-jars/spark_profiling_plugin-1.0-beta-jar-with-dependencies.jar \
-   --conf spark.plugins='com.tomsisso.spark.plugins.profiling.pyroscope.SparkProfilingPlugin' \
-   --conf spark.plugins.profiling.pyroscope.plugin.server.address='http://pyroscope:4040' \
-   /opt/spark-jars/spark_app-1.0-beta.jar
-   
-   
    ```
-5. go to grafana at http://grafana:3000/datasources (admin, admin), and add pyroscope plugin:
+
+8. go to grafana at http://grafana:3000/datasources (admin, admin), and add pyroscope plugin:
    ```
    Field	Value
    Name	Pyroscope

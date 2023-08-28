@@ -1,0 +1,9 @@
+apiVersion: 1
+
+datasources:
+  - name: pyroscope
+    type: phlare
+    url: http://pyroscope:4040
+#    jsonData:
+#      minStep: '10s'
+#      backendType: 'pyroscope'
