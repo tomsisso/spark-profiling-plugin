@@ -9,20 +9,7 @@
    ``` 
    docker-compose up 
    ```
-4. setup grafana:
-   1. setup pyroscope datasource:
-      ```
-      for i in grafana/data_sources/*; do \
-      curl -X "POST" "http://localhost:3000/api/datasources" \
-      -H "Content-Type: application/json" \
-      --user admin:admin \
-      --data-binary @$i
-      done
-      ```
-   2. setup pyroscope dashboard:
-      ```
-      ```
-5. submit the demo job using one of the nodes:
+4. submit the demo job using one of the nodes:
    ``` 
    docker exec demo_spark-master_1 \
    /opt/bitnami/spark/bin/spark-submit \
@@ -41,9 +28,4 @@
    /opt/spark-jars/spark_app-1.0-beta.jar
    ```
 
-8. go to grafana at http://grafana:3000/datasources (admin, admin), and add pyroscope plugin:
-   ```
-   Field	Value
-   Name	Pyroscope
-   URL	http://pyroscope:4040/
-   ```
+8. go to grafana at http://localhost:3000/ - (admin, admin). and use Spark Profiling dashboard
