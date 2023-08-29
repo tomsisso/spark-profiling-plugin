@@ -7,25 +7,26 @@ import java.util.concurrent.TimeUnit;
 
 public class DemoSparkApp {
     public static void main(String[] args) throws InterruptedException {
-        SparkSession sparkSession = SparkSession.builder().getOrCreate();
-        String inputPath = "/opt/spark-data/";
+        try (SparkSession sparkSession = SparkSession.builder().getOrCreate()) {
+            String inputPath = "/opt/spark-data/";
 
-        sparkSession.read()
-                .option("header", true)
-                .csv(inputPath)
-                .repartition(10)
-                .createOrReplaceTempView("input");
+            sparkSession.read()
+                    .option("header", true)
+                    .csv(inputPath)
+                    .repartition(10)
+                    .createOrReplaceTempView("input");
 
-        sparkSession.sql("" +
-                        "SELECT Country, count(1) " +
-                        "FROM input " +
-                        "GROUP BY Country" +
-                        "")
-                .write()
-                .mode(SaveMode.Overwrite)
-                .parquet(inputPath + "output");
+            sparkSession.sql(
+                            "SELECT Country, count(*) " +
+                            "FROM input " +
+                            "GROUP BY Country"
+                            )
+                    .write()
+                    .mode(SaveMode.Overwrite)
+                    .parquet(inputPath + "output");
 
-        //sleeping to keep spark ui for a while
-        Thread.sleep(TimeUnit.MINUTES.toMillis(5));
+            //sleeping to keep spark ui for a while
+            Thread.sleep(TimeUnit.MINUTES.toMillis(5));
+        }
     }
 }
