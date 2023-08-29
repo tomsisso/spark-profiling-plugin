@@ -9,7 +9,7 @@ We use the plugin's onTaskStart/onTaskSucceeded/onTaskFailed callbacks to mark t
 The result allows investigating the profiling data in multiple ways - either as a whole, using an aggregated view of the entire app, or a zoom-in view by breaking it down by executor, stage or partition.
 
 ### Using it
-1. Download or build the plugin. For building it on your own - run the following command from the spark_profiling_plugin directory:
+1. Download or build the plugin jar. For building it on your own - run the following command from the spark_profiling_plugin directory:
    ```
    mvn clean package
    ```
