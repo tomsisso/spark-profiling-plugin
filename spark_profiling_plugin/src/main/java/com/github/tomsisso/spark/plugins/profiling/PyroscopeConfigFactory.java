@@ -20,8 +20,8 @@ public class PyroscopeConfigFactory {
         String appName = "spark-" + pluginContext.conf().get("spark.app.name");
         String serverAddress = extraConfMap.get("server.address");
         EventType eventType = EventType.fromId(Objects.firstNonNull(extraConfMap.get("events"), "itimer"));
-        Duration profilingInterval = Duration.ofMillis(Integer.valueOf(Objects.firstNonNull(extraConfMap.get("profiling.interval.ms"), "99")));
-        Duration uploadInterval = Duration.ofSeconds(Integer.valueOf(Objects.firstNonNull(extraConfMap.get("upload.interval.seconds"), "10")));
+        Duration profilingInterval = Duration.ofMillis(Integer.parseInt(Objects.firstNonNull(extraConfMap.get("profiling.interval.ms"), "99")));
+        Duration uploadInterval = Duration.ofSeconds(Integer.parseInt(Objects.firstNonNull(extraConfMap.get("upload.interval.seconds"), "5")));
         String allocBytes = Objects.firstNonNull(extraConfMap.get("alloc.bytes"), "1000");
         String lockNanos = Objects.firstNonNull(extraConfMap.get("lock.ns"), "1000");
 
