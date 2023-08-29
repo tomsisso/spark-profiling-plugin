@@ -1,15 +1,14 @@
-package com.tomsisso.spark.plugins;
+package com.github.tomsisso.spark.plugins;
 
 import org.apache.spark.sql.SaveMode;
 import org.apache.spark.sql.SparkSession;
 
 import java.util.concurrent.TimeUnit;
 
-public class Demo {
+public class DemoSparkApp {
     public static void main(String[] args) throws InterruptedException {
         SparkSession sparkSession = SparkSession.builder().getOrCreate();
         String inputPath = "/opt/spark-data/";
-//        String inputPath = Demo.class.getClassLoader().getResource("org.csv").getPath();
 
         sparkSession.read()
                 .option("header", true)

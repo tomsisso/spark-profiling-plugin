@@ -1,4 +1,4 @@
-package com.tomsisso.spark.plugins.profiling.pyroscope;
+package com.github.tomsisso.spark.plugins.profiling;
 
 import io.pyroscope.javaagent.PyroscopeAgent;
 import io.pyroscope.javaagent.config.Config;
@@ -18,7 +18,7 @@ public class DriverProfilingPlugin implements DriverPlugin {
         Map<String, String> configsMap = buildConfigsMap(sc);
         System.out.println("Parsed configs map: " + configsMap);
 
-        Config config = PyroscopeConfigFactory.of(pluginContext, configsMap);
+        Config config = PyroscopeConfigFactory.createConfig(pluginContext, configsMap);
         PyroscopeAgent.start(config);
 
         return configsMap;

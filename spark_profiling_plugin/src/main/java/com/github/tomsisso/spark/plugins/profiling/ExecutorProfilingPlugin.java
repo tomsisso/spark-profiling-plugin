@@ -1,4 +1,4 @@
-package com.tomsisso.spark.plugins.profiling.pyroscope;
+package com.github.tomsisso.spark.plugins.profiling;
 
 import io.pyroscope.javaagent.PyroscopeAgent;
 import io.pyroscope.javaagent.config.Config;
@@ -17,7 +17,7 @@ public class ExecutorProfilingPlugin implements ExecutorPlugin {
 
     @Override
     public void init(PluginContext ctx, Map<String, String> extraConf) {
-        Config config = PyroscopeConfigFactory.of(ctx, extraConf);
+        Config config = PyroscopeConfigFactory.createConfig(ctx, extraConf);
         PyroscopeAgent.start(config);
     }
 

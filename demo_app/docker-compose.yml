@@ -38,6 +38,6 @@ services:
     ports:
       - '4040:4040'
     volumes:
-      - ./app/target:/opt/spark-jars/app
-      - ../plugin/target:/opt/spark-jars/plugin
+      - ./target:/opt/spark-jars/app
+      - ../spark_profiling_plugin/target:/opt/spark-jars/plugin
       - ./dockers_files/spark_worker/data:/opt/spark-data

@@ -6,13 +6,12 @@
 
     <groupId>com.github.tomsisso.spark.plugins</groupId>
     <artifactId>spark_profiling_plugin</artifactId>
-    <version>1.0-beta</version>
 
-    <properties>
-        <maven.compiler.source>8</maven.compiler.source>
-        <maven.compiler.target>8</maven.compiler.target>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    </properties>
+    <parent>
+        <groupId>com.github.tomsisso.spark.plugins</groupId>
+        <artifactId>spark_profiling_plugin_root</artifactId>
+        <version>1.0.0</version>
+    </parent>
 
     <build>
         <plugins>
@@ -40,13 +39,11 @@
         <dependency>
             <groupId>org.apache.spark</groupId>
             <artifactId>spark-core_2.13</artifactId>
-            <version>3.4.0</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>io.pyroscope</groupId>
             <artifactId>agent</artifactId>
-            <version>0.11.5</version>
         </dependency>
     </dependencies>
 </project>
