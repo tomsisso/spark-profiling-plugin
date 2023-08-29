@@ -36,6 +36,7 @@ This demo contains an E2E environment to demonstrate the profiling plugin:
    --conf spark.plugins='com.github.tomsisso.spark.plugins.profiling.SparkProfilingPlugin' \
    --conf spark.plugins.profiling.plugin.server.address='http://pyroscope:4040' \
    --conf spark.plugins.profiling.plugin.upload.interval.seconds=5 \
+   --conf spark.sql.adaptive.enabled=false \
    /opt/spark-jars/app/demo_app-1.0.0.jar
    ```
 4. The services are accessible from the host:

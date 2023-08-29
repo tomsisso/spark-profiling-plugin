@@ -13,7 +13,6 @@ import java.util.Map;
 
 public class DriverProfilingPlugin implements DriverPlugin {
 
-
     @Override
     public Map<String, String> init(SparkContext sc, PluginContext pluginContext) {
         Map<String, String> pluginConfigsMap = buildConfigsMap(sc);

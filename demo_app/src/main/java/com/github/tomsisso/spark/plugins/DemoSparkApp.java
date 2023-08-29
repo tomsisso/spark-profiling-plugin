@@ -13,7 +13,7 @@ public class DemoSparkApp {
             sparkSession.read()
                     .option("header", true)
                     .csv(inputPath)
-                    .repartition(10)
+                    .repartition(100)
                     .createOrReplaceTempView("input");
 
             sparkSession.sql(
