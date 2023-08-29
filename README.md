@@ -6,6 +6,7 @@ It combines 2 components:
 1. [Pyroscope Java agent](https://grafana.com/docs/pyroscope/next/configure-client/language-sdks/java/) - to collect the profiling samples from the java processes and report them to a Pyroscope server.
 2. [Apache Spark plugin](https://spark.apache.org/docs/latest/api/java/index.html?org/apache/spark/api/plugin/SparkPlugin.html) - custom plugin implementation for starting the agent on every node, while attaching a context to the profiling data in runtime. 
 It's using the plugin's onTaskStart/onTaskSucceeded/onTaskFailed callbacks to mark the execution flow with the relevant context labels: executor, stage and partition.
+
 The result allows investigating the profiling data in multiple ways - either as a whole, using an aggregated view of the entire app, or as some zoom-in view by breaking it down by executor, stage or partition.
 
 ### Using it
