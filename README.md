@@ -28,4 +28,6 @@ The result allows investigating the profiling data in multiple ways - either as 
    
 ### Demo
 This repo includes an E2E demo environment including docker-compose.yml with the relevant Spark, Pyroscope and Grafana dockers (& with a predefined grafana dashboard).
-Start here: [Demo](https://github.com/tomsisso/spark-plugins-temp/blob/main/demo_app/README.md)
+Start here: [Readme](https://github.com/tomsisso/spark-plugins-temp/blob/main/demo_app/README.md)
+
+(https://github.com/tomsisso/spark-plugins-temp/assets/25052755/9142f537-45aa-4014-a8ad-c0d7ee584a50)
