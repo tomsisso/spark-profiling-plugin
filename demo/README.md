@@ -21,11 +21,11 @@
    --conf spark.executor.cores=1 \
    --conf spark.executor.memory=1g \
    --class com.tomsisso.spark.plugins.Demo \
-   --jars /opt/spark-jars/spark_profiling_plugin-1.0-beta-jar-with-dependencies.jar \
+   --jars /opt/spark-jars/plugin/spark_profiling_plugin-1.0-beta-jar-with-dependencies.jar \
    --conf spark.plugins='com.tomsisso.spark.plugins.profiling.pyroscope.SparkProfilingPlugin' \
    --conf spark.plugins.profiling.pyroscope.plugin.server.address='http://pyroscope:4040' \
    --conf spark.plugins.profiling.pyroscope.plugin.upload.interval.seconds=1 \
-   /opt/spark-jars/spark_app-1.0-beta.jar
+   /opt/spark-jars/app/spark_app-1.0-beta.jar
    ```
 
 8. go to grafana at http://localhost:3000/ - (admin, admin). and use Spark Profiling dashboard

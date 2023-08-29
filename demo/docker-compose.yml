@@ -1,18 +1,15 @@
-# Copyright VMware, Inc.
-# SPDX-License-Identifier: APACHE-2.0
-
 version: '2'
 
 services:
   pyroscope:
-    image: grafana/pyroscope:latest
+    image: grafana/pyroscope:weekly-f29-3c0121c1
   grafana:
-    image: grafana/grafana:main
+    image: grafana/grafana:10.1.0
     ports:
       - '3000:3000'
     volumes:
-      - ./grafana/dashboards:/etc/grafana/provisioning/dashboards/
-      - ./grafana/datasources:/etc/grafana/provisioning/datasources/
+      - ./dockers_files/grafana/dashboards:/etc/grafana/provisioning/dashboards/
+      - ./dockers_files/grafana/datasources:/etc/grafana/provisioning/datasources/
   spark-master:
     image: docker.io/bitnami/spark:3.4
     environment:
@@ -24,9 +21,6 @@ services:
       - SPARK_USER=spark
     ports:
       - '8080:8080'
-    volumes:
-      - ./jars:/opt/spark-jars
-      - ./data:/opt/spark-data
   spark-worker:
     image: docker.io/bitnami/spark:3.4
     environment:
@@ -44,5 +38,6 @@ services:
     ports:
       - '4040:4040'
     volumes:
-      - ./jars:/opt/spark-jars
-      - ./data:/opt/spark-data
+      - ./app/target:/opt/spark-jars/app
+      - ../plugin/target:/opt/spark-jars/plugin
+      - ./dockers_files/spark_worker/data:/opt/spark-data
