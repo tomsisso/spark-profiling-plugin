@@ -18,7 +18,7 @@ The result allows investigating the profiling data in multiple ways - either as 
 2. Submit your spark job including the plugin configurations. e.g:
    ``` 
    /spark-submit \
-   ... your arguments... \
+   ... your arguments ... \
    --jars <YOUR_PATH_TO_THE_PLUGIN_JAR_LOCATION>/spark_profiling_plugin-1.0.0-jar-with-dependencies.jar \
    --conf spark.plugins='com.github.tomsisso.spark.plugins.profiling.SparkProfilingPlugin' \
    --conf spark.plugins.profiling.plugin.server.address='http://<YOUR_PYROSCOPE_SERVER>:4040' \
