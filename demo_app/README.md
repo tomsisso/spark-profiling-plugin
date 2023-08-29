@@ -25,8 +25,8 @@
    --class com.github.tomsisso.spark.plugins.DemoSparkApp \
    --jars /opt/spark-jars/plugin/spark_profiling_plugin-1.0.0-jar-with-dependencies.jar \
    --conf spark.plugins='com.github.tomsisso.spark.plugins.profiling.SparkProfilingPlugin' \
-   --conf spark.plugins.profiling.pyroscope.plugin.server.address='http://pyroscope:4040' \
-   --conf spark.plugins.profiling.pyroscope.plugin.upload.interval.seconds=1 \
+   --conf spark.plugins.profiling.plugin.server.address='http://pyroscope:4040' \
+   --conf spark.plugins.profiling.plugin.upload.interval.seconds=5 \
    /opt/spark-jars/app/demo_app-1.0.0.jar
    ```
 

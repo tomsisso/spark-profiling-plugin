@@ -13,21 +13,21 @@ import java.util.Map;
 
 public class DriverProfilingPlugin implements DriverPlugin {
 
+
     @Override
     public Map<String, String> init(SparkContext sc, PluginContext pluginContext) {
-        Map<String, String> configsMap = buildConfigsMap(sc);
-        System.out.println("Parsed configs map: " + configsMap);
+        Map<String, String> pluginConfigsMap = buildConfigsMap(sc);
 
-        Config config = PyroscopeConfigFactory.createConfig(pluginContext, configsMap);
+        Config config = PyroscopeConfigFactory.createConfig(pluginContext, pluginConfigsMap);
         PyroscopeAgent.start(config);
 
-        return configsMap;
+        return pluginConfigsMap;
     }
 
     private static Map<String, String> buildConfigsMap(SparkContext sc) {
         Tuple2<String, String>[] conf = JavaSparkContext.fromSparkContext(sc)
                 .getConf()
-                .getAllWithPrefix("spark.plugins.profiling.pyroscope.plugin.");
+                .getAllWithPrefix("spark.plugins.profiling.plugin.");
 
         Map<String, String> map = new HashMap<>(conf.length);
         for (Tuple2<String, String> tuple : conf) {
