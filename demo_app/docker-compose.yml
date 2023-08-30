@@ -2,7 +2,7 @@ version: '2'
 
 services:
   pyroscope:
-    image: grafana/pyroscope:weekly-f29-3c0121c1
+    image: grafana/pyroscope:1.0.0
   grafana:
     image: grafana/grafana:10.1.0
     ports:
