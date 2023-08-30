@@ -13,6 +13,8 @@ import java.util.Map;
 
 public class DriverProfilingPlugin implements DriverPlugin {
 
+    public static final String PLUGIN_CONFIGS_PREFIX = "spark.plugins.profiling.plugin.";
+
     @Override
     public Map<String, String> init(SparkContext sc, PluginContext pluginContext) {
         Map<String, String> pluginConfigsMap = buildConfigsMap(sc);
@@ -26,7 +28,7 @@ public class DriverProfilingPlugin implements DriverPlugin {
     private static Map<String, String> buildConfigsMap(SparkContext sc) {
         Tuple2<String, String>[] conf = JavaSparkContext.fromSparkContext(sc)
                 .getConf()
-                .getAllWithPrefix("spark.plugins.profiling.plugin.");
+                .getAllWithPrefix(PLUGIN_CONFIGS_PREFIX);
 
         Map<String, String> map = new HashMap<>(conf.length);
         for (Tuple2<String, String> tuple : conf) {

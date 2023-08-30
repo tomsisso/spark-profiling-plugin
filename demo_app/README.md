@@ -2,14 +2,14 @@
 
 ### Intro
 This demo contains an E2E environment to demonstrate the profiling plugin:
-1. Demo spark application code - a simple spark app, to monitor it with the new spark plugin.
-2. docker-compose.yml - to set up the environment which is composed of the following dockers: 
+1. Demo Spark application code - a simple Spark app, to profile it with the new plugin.
+2. docker-compose.yml - to set up the environment dockers: 
    1. Spark standalone cluster (master & worker) 
    2. Pyroscope server 
-   3. Grafana server with a predefined profiling dashboard (and a Pyroscope datasource).  
+   3. Grafana server with a predefined profiling dashboard.  
 
 ### Setup
-1. Build the plugin & demo app jars using maven. Run the following command from the project root:
+1. Build the plugin & demo app jars using maven. Run the following from the project root:
    ```
    mvn clean package
    ```
