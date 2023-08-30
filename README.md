@@ -1,7 +1,7 @@
 # Spark Profiling Plugin 
 
 ### Intro
-This plugin allows profiling a spark application. It collects profiling data both from the driver and the executors, to get a detailed view of the application's cpu usage, memory allocations, lock contention, etc.
+This plugin allows profiling a spark application. It collects profiling data both from the driver and the executors, to get a detailed view (flame graphs) of the application's cpu usage, memory allocations, lock contention, etc.
 The implementation uses 2 components:
 1. [Pyroscope Java agent](https://grafana.com/docs/pyroscope/next/configure-client/language-sdks/java/) - to collect the profiling samples from the java processes and report them to a Pyroscope server.
 2. [Apache Spark plugin](https://spark.apache.org/docs/latest/api/java/index.html?org/apache/spark/api/plugin/SparkPlugin.html) - custom plugin implementation for starting the agent on every node, while attaching a context to the profiling data in runtime. 
